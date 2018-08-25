@@ -1,10 +1,6 @@
 import React from 'react'
 
 const Book = props => {
-  const title = props.book.title
-  const author = props.book.author
-  const cover = props.book.cover
-
   const handleOnchange = event => {
     props.changeBookType(props.book, event.target.value)
   }
@@ -17,7 +13,7 @@ const Book = props => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${cover})`,
+            backgroundImage: `url(${props.book.imageLinks.thumbnail})`,
           }}
         />
         <div className="book-shelf-changer">
@@ -32,8 +28,8 @@ const Book = props => {
           </select>
         </div>
       </div>
-      <div className="book-title">{title}</div>
-      <div className="book-authors">{author}</div>
+      <div className="book-title">{props.book.title}</div>
+      <div className="book-authors">{props.book.authors}</div>
     </div>
   )
 }
