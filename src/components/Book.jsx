@@ -1,7 +1,13 @@
 import React from 'react'
 
 const Book = props => {
-  const { title, author, cover } = props
+  const title = props.book.title
+  const author = props.book.author
+  const cover = props.book.cover
+
+  const handleOnchange = event => {
+    props.changeBookType(props.book, event.target.value)
+  }
 
   return (
     <div className="book">
@@ -15,14 +21,14 @@ const Book = props => {
           }}
         />
         <div className="book-shelf-changer">
-          <select>
+          <select onChange={handleOnchange}>
             <option value="move" disabled>
               Move to...
             </option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
-            <option value="none">None</option>
+            <option value="Current">Currently Reading</option>
+            <option value="Want">Want to Read</option>
+            <option value="Read">Read</option>
+            <option value="None">None</option>
           </select>
         </div>
       </div>
