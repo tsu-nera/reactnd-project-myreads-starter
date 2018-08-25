@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 const BookList = props => {
-  const getBooksByType = type => props.books.filter(book => book.type === type)
+  const getBooksByCategory = category =>
+    props.books.filter(book => book.shelf === category)
 
   return (
     <div className="list-books">
@@ -13,19 +14,19 @@ const BookList = props => {
       <div className="list-books-content">
         <div>
           <BookShelf
-            books={getBooksByType('Current')}
-            title="Currently Reading"
-            changeBookType={props.changeBookType}
-          />
-          <BookShelf
-            books={getBooksByType('Want')}
+            books={getBooksByCategory('wantToRead')}
             title="Want to Read"
-            changeBookType={props.changeBookType}
+            changeBookCategory={props.changeBookCategory}
           />
           <BookShelf
-            books={getBooksByType('Read')}
+            books={getBooksByCategory('currentlyReading')}
+            title="Currently Reading"
+            changeBookCategory={props.changeBookCategory}
+          />
+          <BookShelf
+            books={getBooksByCategory('read')}
             title="Read"
-            changeBookType={props.changeBookType}
+            changeBookCategory={props.changeBookCategory}
           />
         </div>
       </div>

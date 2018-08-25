@@ -21,9 +21,9 @@ class BookSearch extends React.Component {
               currentBook => currentBook.id === book.id
             )
             if (bookToBeMatched) {
-              book.type = bookToBeMatched.type
+              book.shelf = bookToBeMatched.shelf
             } else {
-              book.type = 'None'
+              book.shelf = 'none'
             }
             searchableBooks[index] = book
           })
@@ -58,8 +58,10 @@ class BookSearch extends React.Component {
           <ol className="books-grid">
             {this.state.searchBooksList.map(book => (
               <li key={book.id} className="contact-list-item">
-                {console.log(book)}
-                <Book book={book} changeBookType={this.props.changeBookType} />
+                <Book
+                  book={book}
+                  changeBookCategory={this.props.changeBookCategory}
+                />
               </li>
             ))}
           </ol>
