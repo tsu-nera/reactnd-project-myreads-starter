@@ -19,22 +19,21 @@ class BookSearch extends React.Component {
   searchBooks(searchQuery) {
     if (searchQuery) {
       BooksAPI.search(searchQuery, 20).then(searchableBooks => {
-        if (searchableBooks.length) {
-          searchableBooks.forEach((book, index) => {
-            const bookToBeMatched = this.props.books.find(
-              currentBook => currentBook.id === book.id
-            )
-            if (bookToBeMatched) {
-              book.shelf = bookToBeMatched.shelf
-            } else {
-              book.shelf = 'none'
-            }
-            searchableBooks[index] = book
-          })
-          this.setState({
-            searchBooksList: searchableBooks,
-          })
-        }
+        if (!Array.isArray(searchableBooks)) searchableBooks = []
+        searchableBooks.forEach((book, index) => {
+          const bookToBeMatched = this.props.books.find(
+            currentBook => currentBook.id === book.id
+          )
+          if (bookToBeMatched) {
+            book.shelf = bookToBeMatched.shelf
+          } else {
+            book.shelf = 'none'
+          }
+          searchableBooks[index] = book
+        })
+        this.setState({
+          searchBooksList: searchableBooks,
+        })
       })
     } else {
       this.setState({
