@@ -12,6 +12,10 @@ class BookSearch extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.searchBooks('')
+  }
+
   searchBooks(searchQuery) {
     if (searchQuery) {
       BooksAPI.search(searchQuery, 20).then(searchableBooks => {
